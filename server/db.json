@@ -1,0 +1,64 @@
+{
+  "movies": [
+    {
+      "id": "1",
+      "title": "Jaws",
+      "year": "1975",
+      "gender": "Ciencia",
+      "scienceField": "Biología marina",
+      "director": "Steven Spielberg",
+      "actors": "Roy Scheider, Richard Dreyfuss, Robert Shaw",
+      "movie_description": "Un tiburón blanco amenaza a un pueblo costero, mientras un biólogo marino, un oficial y un cazador intentan detenerlo.",
+      "video_url": "https://www.youtube.com/embed/U1fu_sA7XhE",
+      "comments": []
+    },
+{
+  "id": "2",
+  "title": "Deep Blue Sea",
+  "year": "1999",
+  "gender": "Ciencia",
+  "scienceField": "Neurociencia, Genética",
+  "director": "Renny Harlin",
+  "actors": "Thomas Jane, Saffron Burrows, LL Cool J",
+  "movie_description": "Científicos modifican genéticamente tiburones para curar el Alzheimer, pero las criaturas se vuelven demasiado inteligentes.",
+  "video_url": "../src/",
+  "comments": []
+},
+{
+  "id": "3",
+  "title": "The Meg",
+  "year": "2018",
+  "gender": "Ciencia",
+  "scienceField": "Paleobiología marina",
+  "director": "Jon Turteltaub",
+  "actors": "Jason Statham, Li Bingbing, Rainn Wilson",
+  "movie_description": "Un megalodón prehistórico emerge de las profundidades y amenaza la seguridad de todos.",
+  "video_url": "https://www.youtube.com/watch?v=eKNfVTcHAXU",
+  "comments": []
+},
+    {
+  "id": "4",
+  "title": "Infierno Azul",
+  "year": "2016",
+  "gender": "Ciencia",
+  "scienceField": "Biología marina, Comportamiento animal",
+  "director": "Jaume Collet-Serra",
+  "actors": "Blake Lively",
+  "movie_description": "Una surfista queda atrapada en una roca a pocos metros de la orilla mientras un gran tiburón blanco merodea a su alrededor. La película explora instintos de supervivencia y el comportamiento depredador de los tiburones.",
+  "video_url": "https://www.youtube.com/embed/EgdxIlSuB70",
+  "comments": []
+},
+ {
+  "id": "5",
+  "title": "47 Meters Down",
+  "year": "2017",
+  "gender": "Ciencia",
+  "scienceField": "Psicología, Buceo en profundidad",
+  "director": "Johannes Roberts",
+  "actors": "Mandy Moore, Claire Holt",
+  "movie_description": "Dos hermanas quedan atrapadas en una jaula de tiburones a 47 metros de profundidad con oxígeno limitado, mientras el miedo y la presión amenazan su cordura.",
+  "video_url": "https://www.youtube.com/embed/sXBQ1VV5FNQ",
+  "comments": []
+}
+  ]
+}
