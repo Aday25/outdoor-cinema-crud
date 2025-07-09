@@ -1,43 +1,39 @@
 const API_URL = 'http://localhost:3000/movies';
 const BAD_WORDS = ["idiota", "imbécil", "estúpido", "mierda", "puta", "gilipollas"];
 
-// CRUD: Películas
+// 📦 API Functions
+async function getMovies() {
+  const res = await fetch(API_URL);
+  return await res.json();
+}
 
-async function createMovie(newMovie) {
-  const response = await fetch(API_URL, {
+async function updateMovie(id, data) {
+  const res = await fetch(`${API_URL}/${id}`, {
+    method: "PATCH",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+  return res.ok;
+}
+
+async function createMovie(movie) {
+  const res = await fetch(API_URL, {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(newMovie)
+    body: JSON.stringify(movie)
   });
-  return await response.json();
+  return await res.json();
 }
-
-async function getMovies() {
-  const result = await fetch(API_URL);
-  return await result.json();
-}
-
-async function updateMovie(id, editedMovie) {
-  const response = await fetch(`${API_URL}/${id}`, {
-    method: "PUT",
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(editedMovie)
-  });
-  return await response.json();
-}
-
-async function deleteMovie(id) {
-  const response = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-  return response.ok;
-}
-
-let sharkContainer = document.querySelector('#shark-movies');
-let literatureContainer = document.querySelector('#literature-movies');
 
 function containsBadWords(comment) {
   return BAD_WORDS.some(word => comment.toLowerCase().includes(word));
 }
 
+// 🎞️ UI Elements
+const moviesContainer = document.querySelector("#cycle-movies");
+const introSection = document.querySelector("#intro-section");
+
+// 🧱 Create each card
 function createMovieCard(movie) {
   const card = document.createElement("div");
   card.classList.add("movie-card");
@@ -51,83 +47,129 @@ function createMovieCard(movie) {
     <p><strong>Actores:</strong> ${movie.actors}</p>
     <p><strong>Descripción:</strong> ${movie.movie_description}</p>
     ${movie.video_url ? `<iframe src="${movie.video_url}" frameborder="0" allowfullscreen></iframe>` : ""}
+    <div class="likes">
+      <span class="like-btn">👍 <span class="like-count">${movie.likes || 0}</span></span>
+      <span class="dislike-btn">👎 <span class="dislike-count">${movie.dislikes || 0}</span></span>
+      <span class="love-btn">❤️ <span class="love-count">${movie.hearts || 0}</span></span>
+    </div>
     <input type="text" placeholder="Agrega un comentario..." class="comment-input">
     <button class="comment-btn">Comentar</button>
-    <div class="likes">
-      <span class="like">👍</span>
-      <span class="dislike">👎</span>
-      <span class="love">❤️</span>
-    </div>
     <ul class="comment-list"></ul>
   `;
 
-  const commentInput = card.querySelector(".comment-input");
-  const commentBtn = card.querySelector(".comment-btn");
-  const commentList = card.querySelector(".comment-list");
+  // 🧡 Likes
+  const likeCount = card.querySelector(".like-count");
+  const dislikeCount = card.querySelector(".dislike-count");
+  const loveCount = card.querySelector(".love-count");
 
-  commentBtn.addEventListener("click", async () => {
-    const commentText = commentInput.value.trim();
-    if (!commentText) return;
-    if (containsBadWords(commentText)) {
-      alert("Tu comentario contiene lenguaje inapropiado.");
-      return;
-    }
-
-    movie.comments.push(commentText);
-    await updateMovie(movie.id, movie);
-    const li = document.createElement("li");
-    li.textContent = commentText;
-    commentList.appendChild(li);
-    commentInput.value = "";
+  card.querySelector(".like-btn").addEventListener("click", async () => {
+    movie.likes = (movie.likes || 0) + 1;
+    await updateMovie(movie.id, { likes: movie.likes });
+    likeCount.textContent = movie.likes;
   });
 
-  if (movie.comments) {
-    movie.comments.forEach(c => {
+  card.querySelector(".dislike-btn").addEventListener("click", async () => {
+    movie.dislikes = (movie.dislikes || 0) + 1;
+    await updateMovie(movie.id, { dislikes: movie.dislikes });
+    dislikeCount.textContent = movie.dislikes;
+  });
+
+  card.querySelector(".love-btn").addEventListener("click", async () => {
+    movie.hearts = (movie.hearts || 0) + 1;
+    await updateMovie(movie.id, { hearts: movie.hearts });
+    loveCount.textContent = movie.hearts;
+  });
+
+  // 💬 Comentarios
+  const input = card.querySelector(".comment-input");
+  const btn = card.querySelector(".comment-btn");
+  const list = card.querySelector(".comment-list");
+
+  const renderComments = () => {
+    list.innerHTML = "";
+    (movie.comments || []).forEach(c => {
       const li = document.createElement("li");
       li.textContent = c;
-      commentList.appendChild(li);
+      list.appendChild(li);
     });
-  }
+  };
+
+  btn.addEventListener("click", async () => {
+    const text = input.value.trim();
+    if (!text) return;
+    if (containsBadWords(text)) return alert("Comentario inapropiado");
+
+    movie.comments = movie.comments || [];
+    movie.comments.push(text);
+    await updateMovie(movie.id, { comments: movie.comments });
+    renderComments();
+    input.value = "";
+  });
+
+  renderComments();
 
   return card;
 }
 
-async function printMovies() {
-  sharkContainer.innerHTML = "";
-  literatureContainer.innerHTML = "";
+// 🎯 Ciclos con introducción
+const cycleIntros = {
+  sharks: "🦈 Bienvenido al ciclo de Tiburones: explora la ciencia y el suspense de las criaturas marinas más temidas.",
+  literature: "📚 Bienvenido al ciclo de Literatura Científica: películas inspiradas en los grandes clásicos de la ciencia.",
+  suggestion: "🎥 Películas sugeridas por la comunidad para futuros ciclos. ¡Gracias por participar!"
+};
 
-  const movies = await getMovies();
-  const sharkMovies = movies.slice(0, 5);
-  const literatureMovies = movies.slice(5);
+// 🚀 Mostrar películas por ciclo
+async function renderMoviesByCycle(cycle) {
+  const all = await getMovies();
+  const filtered = all.filter(m => m.cycle === cycle);
 
-  sharkMovies.forEach(movie => sharkContainer.appendChild(createMovieCard(movie)));
-  literatureMovies.forEach(movie => literatureContainer.appendChild(createMovieCard(movie)));
+  // Intro
+  introSection.innerHTML = `
+    <h2>${cycleIntros[cycle]}</h2>
+  `;
+
+  // Cards
+  moviesContainer.innerHTML = "";
+  filtered.forEach(m => moviesContainer.appendChild(createMovieCard(m)));
 }
 
+// 📩 Sugerencias
+async function handleSuggestionSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const title = form.title.value.trim();
+  if (!title) return;
+
+  const movie = {
+    title,
+    year: "",
+    gender: "Sugerencia",
+    scienceField: "",
+    director: "",
+    actors: "",
+    movie_description: form.reason.value,
+    video_url: "",
+    comments: [],
+    likes: 0,
+    dislikes: 0,
+    hearts: 0,
+    cycle: "suggestion"
+  };
+  await createMovie(movie);
+  form.reset();
+  alert("¡Gracias por tu sugerencia!");
+  renderMoviesByCycle("suggestion");
+}
+
+// 🧠 Eventos
 document.addEventListener("DOMContentLoaded", () => {
-  printMovies();
+  document.querySelector("#btn-sharks").addEventListener("click", () => renderMoviesByCycle("sharks"));
+  document.querySelector("#btn-literature").addEventListener("click", () => renderMoviesByCycle("literature"));
+  document.querySelector("#suggestion-form").addEventListener("submit", handleSuggestionSubmit);
 
-  document.querySelector("#suggestion-form").addEventListener("submit", async e => {
-    e.preventDefault();
-    const form = e.target;
-    const title = form.title.value.trim();
-    if (!title) return;
-
-    const newMovie = {
-      id: Date.now().toString(),
-      title,
-      year: "",
-      gender: "Sugerencia",
-      scienceField: "",
-      director: "",
-      actors: "",
-      movie_description: form.reason.value.trim(),
-      video_url: "",
-      comments: []
-    };
-    await createMovie(newMovie);
-    form.reset();
-    alert("Sugerencia enviada. Gracias.");
-    printMovies();
-  });
+  // Mostrar sugerencias al cargar
+  renderMoviesByCycle("sharks");
 });
+
+//para ver sugerencias ya grabadas
+document.querySelector("#btn-suggestions").addEventListener("click", () => renderMoviesByCycle("suggestion"));

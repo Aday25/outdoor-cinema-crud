@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cine de Verano</title>
   <link rel="stylesheet" href="src/styles.css">
@@ -11,46 +11,34 @@
   <header>
     <img src="https://media.tenor.com/HKpAobwCaGIAAAAM/countdown-movie-countdown.gif" alt="Cuenta atrás Cinemascope" class="countdown-gif">
     <h1>Cine de Verano</h1>
-    <h2>Cartelera científica:</h2> 
-    <p>Ciencia y emoción en nuestros ciclos temáticos</p>
-    <button onclick="printMovies()">Ver Cartelera</button>
+    <p>Cartelera científica: Ciencia y emoción en nuestros ciclos temáticos</p>
+    <div class="button-group">
+      <button id="btn-sharks">🦈 Ver Ciclo Tiburones</button>
+      <button id="btn-literature">📚 Ver Ciclo Literatura</button>
+    </div>
   </header>
 
- <main>
-  <!-- INTRODUCCIÓN AL CICLO -->
-  <section id="intro-section">
-    <h2>🎬 Verano de Ciencia: Un ciclo en dos actos</h2>
-    <p>Este verano, te invitamos a explorar la ciencia a través del cine.
-    <strong>Dos semanas, dos ciclos temáticos:</strong> tiburones y literatura científica.</p>
-  </section>
+  <main>
+    <section id="intro-section">
+      <h2>🎬 Verano de Ciencia: Un ciclo en dos actos</h2>
+      <p><strong>Dos semanas, dos ciclos temáticos:</strong> tiburones y literatura científica.</p>
+    </section>
 
-  <!-- CICLO 1: TIBURONES -->
-  <section id="cycle-sharks">
-    <h2>🦈 Semana 1: Ciencia entre tiburones</h2>
-    <div id="shark-movies" class="movies-group">
-      <!-- Películas de tiburones (Semana 1) -->
-    </div>
-  </section>
+    <section id="cycle-movies" class="movies-group">
+      <!-- Aquí se inyectan las tarjetas de películas -->
+    </section>
 
-  <!-- CICLO 2: CIENCIA + LITERATURA -->
-  <section id="cycle-literature">
-    <h2>📚 Semana 2: Ciencia y literatura en pantalla</h2>
-    <div id="literature-movies" class="movies-group">
-      <!-- Películas sobre ciencia & literatura (Semana 2) -->
-    </div>
-  </section>
-
-  <!-- FORMULARIO DE SUGERENCIAS -->
-  <section id="suggestion-section">
-    <h2>¿Qué película te gustaría ver en el próximo ciclo?</h2>
-    <form id="suggestion-form">
-      <input type="text" name="title" placeholder="Título de la película" required>
-      <textarea name="reason" placeholder="¿Por qué la recomiendas?"></textarea>
-      <input type="text" name="user" placeholder="Tu nombre o apodo (opcional)">
-      <button type="submit">Enviar sugerencia</button>
-    </form>
-  </section>
-</main>
+    <section id="suggestion-section">
+      <h2>¿Qué película te gustaría ver en el próximo ciclo?</h2>
+      <form id="suggestion-form">
+        <input type="text" name="title" placeholder="Título de la película" required>
+        <textarea name="reason" placeholder="¿Por qué la recomiendas?"></textarea>
+        <input type="text" name="user" placeholder="Tu nombre o apodo (opcional)">
+        <button type="submit">Enviar sugerencia</button>
+        <button id="btn-suggestions">💡 Ver Sugerencias</button>
+      </form>
+    </section>
+  </main>
 
   <footer>
     <p>&copy; 2025 Cine de Verano</p>
