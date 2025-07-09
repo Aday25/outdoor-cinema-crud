@@ -21,19 +21,19 @@
   "director": "Renny Harlin",
   "actors": "Thomas Jane, Saffron Burrows, LL Cool J",
   "movie_description": "Científicos modifican genéticamente tiburones para curar el Alzheimer, pero las criaturas se vuelven demasiado inteligentes.",
-  "video_url": "../src/",
+  "video_url": "https://www.youtube.com/embed/oSz9MDN-iac",
   "comments": []
 },
 {
   "id": "3",
-  "title": "The Meg",
+  "title": "Megalodón",
   "year": "2018",
   "gender": "Ciencia",
   "scienceField": "Paleobiología marina",
   "director": "Jon Turteltaub",
   "actors": "Jason Statham, Li Bingbing, Rainn Wilson",
   "movie_description": "Un megalodón prehistórico emerge de las profundidades y amenaza la seguridad de todos.",
-  "video_url": "https://www.youtube.com/watch?v=eKNfVTcHAXU",
+  "video_url": "https://www.youtube.com/embed/udm5jUA-2bs",
   "comments": []
 },
     {
@@ -59,6 +59,66 @@
   "movie_description": "Dos hermanas quedan atrapadas en una jaula de tiburones a 47 metros de profundidad con oxígeno limitado, mientras el miedo y la presión amenazan su cordura.",
   "video_url": "https://www.youtube.com/embed/sXBQ1VV5FNQ",
   "comments": []
+},
+    {
+      "id": "6",
+      "title": "Tengo miedo torero",
+      "year": "2020",
+      "gender": "Drama, Romance, LGBTQ+",
+      "scienceField": "",
+      "director": "Rodrigo Sepúlveda",
+      "actors": "Alfredo Castro, Leonardo Ortizgris",
+      "movie_description": "Durante la dictadura de Pinochet, un homosexual solitario se enamora de un joven revolucionario que lo involucra en una operación política. Adaptación de la novela homónima de Pedro Lemebel.",
+      "video_url": "https://www.youtube.com/embed/In4hnm9X9LE",
+      "comments": []                  
+    },
+    {
+      "id": "7",
+      "title": "La casa de los espíritus",
+      "year": "1993",
+      "gender": "Drama, Histórico, Realismo mágico",
+      "scienceField": "Realismo mágico",
+      "director": "Bille August",
+      "actors": "Meryl Streep, Jeremy Irons, Glenn Close, Winona Ryder, Antonio Banderas",
+      "movie_description": "Basada en la novela de Isabel Allende, sigue la historia de una familia chilena a lo largo de varias generaciones marcada por secretos, política y dones sobrenaturales.",
+      "video_url": "https://www.youtube.com/embed/M2ieDUyOEEo" ,
+      "comments": []  
+    },
+    {
+    "id": "8",
+    "title": "Arráncame la vida",
+    "year": "2008",
+    "gender": "Drama, Romance, Histórico",
+    "scienceField": "",
+    "director": "Roberto Sneider",
+    "actors": "Ana Claudia Talancón, Daniel Giménez Cacho, José María de Tavira",
+    "movie_description": "Basada en la novela de Ángeles Mastretta, narra la historia de Catalina, una joven que se casa con un político poderoso en el México posrevolucionario y que lucha por su libertad e identidad.",
+    "video_url": "https://www.youtube.com/embed/Pn3F_7nGbiM",
+    "comments": []
+  },
+  {
+    "id": "9",
+    "title": "La teta asustada",
+    "year": "2009",
+    "gender": "Drama, Social, Feminismo",
+    "scienceField": "Biografía",
+    "director": "Claudia Llosa",
+    "actors": "Magaly Solier, Susi Sánchez",
+    "movie_description": "Fausta sufre una enfermedad transmitida por el miedo durante la violencia en Perú. La película explora el trauma heredado y el cuerpo femenino como territorio de memoria. Inspirada en relatos de Viviana Meza.",
+    "video_url": "https://www.youtube.com/embed/MI4IMF02hbQ",
+    "comments": []
+  },
+  {
+    "id": "10",
+    "title": "Utama",
+    "year": "2022",
+    "gender": "Drama, Ecológico, Indígena",
+    "scienceField": "",
+    "director": "Alejandro Loayza Grisi",
+    "actors": "José Calcina, Luisa Quispe, Candelaria Quispe",
+    "movie_description": "En el altiplano boliviano, una pareja quechua de ancianos enfrenta la sequía y el cambio climático mientras lucha por conservar su forma de vida. Una película profundamente humanista que retrata la tensión entre tradición y modernidad.",
+    "video_url": "https://www.youtube.com/embed/rKSCWfLPLdM",
+    "comments": []
 }
-  ]
+]
 }
