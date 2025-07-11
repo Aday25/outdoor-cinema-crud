@@ -121,17 +121,27 @@ function createMovieCard(movie) {
     });
   };
 
-  btn.addEventListener("click", async () => {
-    const text = input.value.trim();
-    if (!text) return;
-    if (containsBadWords(text)) return alert("Comentario inapropiado");
+btn.addEventListener("click", async (e) => {
+  e.preventDefault(); // 👈 evita que se dispare cualquier comportamiento por defecto (scroll raro incluido)
+  e.stopPropagation(); // 👈 por si hay otros eventos padres que puedan interferir
 
-    movie.comments = movie.comments || [];
-    movie.comments.push(text);
-    await updateMoviePatch(movie.id, { comments: movie.comments });
+  const text = input.value.trim();
+  if (!text) return;
+  if (containsBadWords(text)) return alert("Comentario inapropiado");
+
+  movie.comments = movie.comments || [];
+  movie.comments.push(text);
+  const ok = await updateMoviePatch(movie.id, { comments: movie.comments });
+  if (ok) {
     renderComments();
     input.value = "";
-  });
+
+    // 👉 Esto asegura que el comentario se vea sin moverse la pantalla
+    input.focus(); // opcional: devuelve el foco al input si quieres seguir escribiendo
+  } else {
+    alert("Error al guardar el comentario");
+  }
+});
 
   renderComments();
 
@@ -319,3 +329,15 @@ document.querySelector("#btn-suggestions").addEventListener("click", () => rende
 document.getElementById("btn-suggestions").addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+// ✅ Evento para el nuevo botón "Ver Películas Agregadas"
+const btnAdded = document.getElementById("btn-added");
+if (btnAdded) {
+  btnAdded.addEventListener("click", () => {
+    renderMoviesByCycle("suggestion"); // o el ciclo que necesites
+    const movieSection = document.getElementById("cycle-movies");
+    if (movieSection) {
+      movieSection.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+}
