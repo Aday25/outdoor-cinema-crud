@@ -40,7 +40,7 @@ OUTDOOR-CINEMA/
 
 🚀 Instalación y ejecución
 1. Clona el repositorio
-git clone [https://github.com/Pal-cloud/outdoor-cinema](https://github.com/Aday25/outdoor-cinema-crud)
+git clone [https://github.com/Pal-cloud/outdoor-cinema](https://github.com/Aday25/outdoor-cinema-crud) 
 cd OUTDOOR-CINEMA
 2. Instala las dependencias del proyecto
 bash
